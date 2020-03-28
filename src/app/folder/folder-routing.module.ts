@@ -6,8 +6,14 @@ import { FolderPage } from './folder.page';
 const routes: Routes = [
   {
     path: '',
-    component: FolderPage
+    component: FolderPage,
+   
   }
+  // {
+  //   path: '/profile',
+  //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule),
+  //   canActivate: [AuthGuard]
+  // },
 ];
 
 @NgModule({
