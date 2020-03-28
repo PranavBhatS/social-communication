@@ -13,7 +13,7 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  currentUrl = ''
+  isAutherized = false;
   public appPages = [
     {
       title: 'Profile',
@@ -37,18 +37,20 @@ export class AppComponent implements OnInit {
     private loginService: LoginService,
   ) {
     // this.currentUrl = window.location.pathname
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      this.currentUrl = event.url
-      if (document.getElementById('sideNav')) {
-        if (this.currentUrl == '/login' || this.currentUrl == '/register') {
-          document.getElementById('sideNav').style.display = 'none'
-        } else {
-          document.getElementById('sideNav').style.display = 'block'
-        }
-      }
-    });
+    // this.router.events.pipe(
+    //   filter(event => event instanceof NavigationEnd)
+    // ).subscribe((event: NavigationEnd) => {
+    //   this.currentUrl = event.url
+    //   if (document.getElementById('sideNav')) {
+    //     if (this.currentUrl == '/login' || this.currentUrl == '/register') {
+    //       document.getElementById('sideNav').style.display = 'none'
+    //     } else {
+    //       document.getElementById('sideNav').style.display = 'block'
+    //       document.getElementById('sideNav').style.display = '123'
+    //     }
+    //   }
+    // });
+    this.loginService.isAutherized.subscribe(res=>this.isAutherized = res)
     this.initializeApp();
   }
 
@@ -65,8 +67,6 @@ export class AppComponent implements OnInit {
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    } else {
-      this.currentUrl = 'login'
     }
   }
   logout() {
