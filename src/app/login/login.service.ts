@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  isAutherized= new Subject<boolean>() 
+  isAutherized = new Subject<boolean>()
   constructor(private firebaseAuthentication: AngularFireAuth, private router: Router, private toasterService: ToasterService) { }
   logout() {
     this.firebaseAuthentication.auth.signOut()

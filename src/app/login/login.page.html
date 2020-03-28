@@ -4,7 +4,58 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content>
-<h1>Login page</h1>
-<ion-button (click)="onClick()">Go to</ion-button>
+<ion-content class="hide-when-sm ">
+  <!-- <h1>Login page</h1>
+<ion-button (click)="onClick()">Go to</ion-button>  -->
+  <div class="login-content">
+    <div>
+      <img class="background-img" src="assets/images/login-background.jpg" alt="">
+    </div>
+    <ion-card class="center-card">
+      <form [formGroup]="loginForm">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-md="6" size-lg="5" size-xs="12">
+              <ion-text>
+                <h4 style="text-align: center;">Login to Social App</h4>
+              </ion-text>
+              <div>
+                <ion-item>
+                  <ion-input type="text" formControlName='email' clearInput placeholder='Email'></ion-input>
+                </ion-item>
+                <ion-text class="ion-text-right" color="danger" *ngIf="isFormSubmitted && f.email.errors">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </ion-text>
+                <ion-item>
+                  <ion-input type="password" formControlName='password' placeholder='Password' clearInput></ion-input>
+                </ion-item>
+                <ion-text class="ion-text-right" color="danger" *ngIf="isFormSubmitted && f.password.errors">
+                  <div>Password is required</div>
+                </ion-text>
+              </div>
+              <br>
+              <div>
+                <ion-button expand="block" (click)="onClick()" [disabled]='isSubmitClicked'>Sign In</ion-button>
+              </div>
+              <div class="ion-text-right">
+                <ion-text color='secondary'>
+                  Forgot password?
+                </ion-text>
+              </div>
+              <br>
+              <div>
+                <ion-text color='primary'>
+                  New to our app?
+                </ion-text>
+              </div>
+              <div>
+                <ion-button expand="block" color="success">Sign Up</ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card>
+  </div>
 </ion-content>

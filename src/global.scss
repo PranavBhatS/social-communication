@@ -24,3 +24,33 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+
+.show-when-lg {
+    display: none;
+}
+
+.show-when-sm {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .show-when-lg {
+        display: block;
+    }
+
+    .hide-when-lg {
+        display: none;
+    }
+}
+
+@media (min-width: 576px) {
+    .show-when-sm {
+        display: block;
+    }
+
+    .hide-when-sm {
+        display: none;
+    }
+}

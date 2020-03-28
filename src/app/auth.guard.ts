@@ -7,7 +7,7 @@ import { LoginService } from './login/login.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router,private loginService:LoginService) {
+  constructor(private router: Router, private loginService: LoginService) {
     console.log("is called")
   }
   canActivate(
