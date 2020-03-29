@@ -1,9 +1,51 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
-  <h1>register page</h1>
+  <div class="login-content">
+    <div>
+      <img class="background-img" src="assets/images/login-background.jpg" alt="">
+    </div>
+    <ion-card class="center-card">
+      <ion-text>
+        <h4 style="text-align: center;">Register to Social App</h4>
+      </ion-text>
+      <form [formGroup]='registerForm'>
+        <ion-item lines="full">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="text" formControlName='email'></ion-input>
+        </ion-item>
+        <ion-text class="ion-text-right" color="danger" *ngIf="isSubmitted &&f.email.errors &&f.email.errors.required">
+          <div>Password required.</div>
+        </ion-text>
+        <ion-item lines="full">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="text" formControlName='password'></ion-input>
+        </ion-item>
+        <ion-text class="ion-text-right" color="danger"
+          *ngIf="registerForm.get('password').hasError('required') && (registerForm.get('password').dirty)">
+          <div>Password required.</div>
+        </ion-text>
+        <ion-item lines="full">
+          <ion-label position="floating">Confirm-Password</ion-label>
+          <ion-input type="text" formControlName='confirmPassword'></ion-input>
+        </ion-item>
+        <ion-text class="ion-text-right" color="danger"
+          *ngIf="!registerForm.get('confirmPassword').hasError('confirmPassword required') && registerForm.hasError('passwordNotMatch') && (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)">
+          <div>Password and confirm password should match.</div>
+        </ion-text>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" color="success" expand="block" (click)="onSubmit()">Sign Up</ion-button>
+          </ion-col>
+        </ion-row>
+        <br />
+        <ion-text color='primary'>
+          Already registered?
+        </ion-text>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" color="primary" expand="block" routerLink='/login'>Login</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-card>
+  </div>
 </ion-content>

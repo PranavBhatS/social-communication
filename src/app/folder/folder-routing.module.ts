@@ -2,22 +2,21 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { FolderPage } from './folder.page';
+import { ProfileComponent } from './profile/profile.component';
+import { InboxComponent } from './inbox/inbox.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: FolderPage,
-   
+    path: 'Profile',
+    component: ProfileComponent
+  }, {
+    path: 'Inbox',
+    component: InboxComponent
   }
-  // {
-  //   path: '/profile',
-  //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule),
-  //   canActivate: [AuthGuard]
-  // },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FolderPageRoutingModule {}
+export class FolderPageRoutingModule { }

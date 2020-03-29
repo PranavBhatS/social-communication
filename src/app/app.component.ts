@@ -3,9 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from './login/login.service';
-import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -21,8 +20,18 @@ export class AppComponent implements OnInit {
       icon: 'person'
     },
     {
+      title: 'Inbox',
+      url: '/folder/Inbox',
+      icon: 'chatbubble'
+    },
+    {
+      title: 'Group',
+      url: 'folder/Group',
+      icon: 'chatbubbles'
+    },
+    {
       title: 'Logout',
-      url: '/folder/logout',
+      url: 'folder/logout',
       icon: 'log-in'
     },
 
@@ -36,21 +45,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
   ) {
-    // this.currentUrl = window.location.pathname
-    // this.router.events.pipe(
-    //   filter(event => event instanceof NavigationEnd)
-    // ).subscribe((event: NavigationEnd) => {
-    //   this.currentUrl = event.url
-    //   if (document.getElementById('sideNav')) {
-    //     if (this.currentUrl == '/login' || this.currentUrl == '/register') {
-    //       document.getElementById('sideNav').style.display = 'none'
-    //     } else {
-    //       document.getElementById('sideNav').style.display = 'block'
-    //       document.getElementById('sideNav').style.display = '123'
-    //     }
-    //   }
-    // });
-    this.loginService.isAutherized.subscribe(res=>this.isAutherized = res)
+    this.loginService.isAutherized.subscribe(res => this.isAutherized = res)
     this.initializeApp();
   }
 
@@ -76,6 +71,8 @@ export class AppComponent implements OnInit {
     if (this.appPages[this.selectedIndex].title === 'Logout') {
       this.logout()
       this.selectedIndex = 0;
+    } else {
+      this.router.navigate([this.appPages[this.selectedIndex].url])
     }
   }
 }

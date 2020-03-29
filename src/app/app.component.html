@@ -1,7 +1,7 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay" *ngIf="isAutherized">
-      <ion-content>
+      <ion-content *ngIf="isAutherized">
         <ion-list id="inbox-list">
           <ion-list-header>Profile</ion-list-header>
           <ion-note>pranavsarang@gmail.com</ion-note>

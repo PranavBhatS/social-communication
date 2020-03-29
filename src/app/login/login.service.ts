@@ -15,6 +15,7 @@ export class LoginService {
         localStorage.clear();
         this.router.navigate(['/login'])
         this.toasterService.normalToast("Your session logout", 'danger');
+        this.isAutherized.next(false)
       })
       .catch(err => {
         console.log(`signup failed ${err}`);

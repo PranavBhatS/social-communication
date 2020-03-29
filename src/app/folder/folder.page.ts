@@ -12,6 +12,10 @@ export class FolderPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    debugger
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+  }
+  ionViewWillEnter() {
+    debugger
   }
 }
