@@ -1,8 +1,36 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Profile</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
+<ion-content padding>
+
+
+  <div id="profile-info" *ngIf="userInfo">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="user-image">
+          <input type="file" #fileBtn class="filebtn" (change)="uploadPic($event)" />
+          <div>
+            <ion-img *ngIf="userProfilePic" class="profile-pic" (click)="updateProfilePic()" [src]="userProfilePic">
+            </ion-img>
+            <ion-img *ngIf="!userProfilePic" class="profile-pic" (click)="updateProfilePic()"
+              src="assets/images/login-background.jpg"></ion-img>
+          </div>
+        </ion-col>
+        <ion-col size="12">
+          <ion-button shape="round" expand="block" color="primary" (click)="updateProfilePic()">Edit Profile Pic
+          </ion-button>
+        </ion-col>
+        <ion-col size="12">
+          <p> <b>User Name : &nbsp;</b>{{ userInfo.displayName }}</p>
+          <p> <b>Email&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp;</b>{{ userInfo.email }}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

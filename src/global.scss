@@ -54,3 +54,19 @@
         display: none;
     }
 }
+
+
+.alert-button-group-vertical.sc-ion-alert-md {
+    -ms-flex-direction: column;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+.input-cover {
+    pointer-events: auto;
+}
+
+ion-content {
+    top: 48px;
+}

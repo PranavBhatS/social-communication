@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
 import { LoginService } from './login.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToasterService } from '../common/toaster.service';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -14,7 +13,7 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   isFormSubmitted = false;
   constructor(private router: Router, private loginService: LoginService,
-    private fb: FormBuilder, private toasterService: ToasterService) { }
+    private fb: FormBuilder, private toasterService: ToasterService, private alertController: AlertController) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -50,5 +49,34 @@ export class LoginPage implements OnInit {
         this.toasterService.normalToast(err, 'danger')
       })
   }
+  async  forgotPassword() {
+    const alert = await this.alertController.create({
+      header: 'Prompt!',
+      message: 'Message <strong>text</strong>!!!',
+      buttons: [
+        {
+          text: 'draft',
+          cssClass: 'primary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        },
+        {
+          text: 'yes',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'cancel',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
 
+    await alert.present();
+  }
 }

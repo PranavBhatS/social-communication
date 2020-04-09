@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Invite</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="inviteForm">
+        <ion-card>
+          <ion-item>
+            <ion-label  position="floating">Invite by Email</ion-label>
+            <ion-input type="text" formControlName='email' clearInput placeholder='Email'></ion-input>
+          </ion-item>
+          <ion-text class="ion-text-right" color="danger" *ngIf="isFormSubmit && f.email.errors">
+            <div *ngIf="f.email.errors.required">Email address is required.</div>
+            <div *ngIf="f.email.errors.email">Email address is not valid.</div>
+          </ion-text>
+          <br>
+          <div>
+            <ion-button expand="block"  color="success" (click)="onSubmit()">Invite User</ion-button>
+          </div>
+        </ion-card>
+      </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!-- DXF-10945 aggree and continue
+https://qaapi.tekizma.com/
+-->

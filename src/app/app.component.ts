@@ -13,6 +13,7 @@ import { LoginService } from './login/login.service';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   isAutherized = false;
+  userInfo
   public appPages = [
     {
       title: 'Profile',
@@ -24,11 +25,11 @@ export class AppComponent implements OnInit {
       url: '/folder/Inbox',
       icon: 'chatbubble'
     },
-    {
-      title: 'Group',
-      url: 'folder/Group',
-      icon: 'chatbubbles'
-    },
+    // {
+    //   title: 'Invite',
+    //   url: 'folder/Invite',
+    //   icon: 'person-add'
+    // },
     {
       title: 'Logout',
       url: 'folder/logout',
@@ -58,11 +59,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // this.router.navigate(['/login'])
-
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+    this.userInfo = JSON.parse(localStorage.getItem("user"));
+    // const path = window.location.pathname.split('folder/')[1];
+    // if (path !== undefined) {
+    //   this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+    // }
   }
   logout() {
     this.loginService.logout()
@@ -76,3 +77,6 @@ export class AppComponent implements OnInit {
     }
   }
 }
+
+
+// /exerciseplan/workout

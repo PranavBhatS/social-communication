@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { RegisterService } from './register.service';
 import { ToasterService } from '../common/toaster.service';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-register',
@@ -22,8 +23,9 @@ export class RegisterPage implements OnInit {
     this.isSubmitted = false;
   }
   initFormBuilder(): void {
-    
+
     this.registerForm = this.formBuilder.group({
+      userName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: new FormControl('', Validators.compose([
         Validators.required,
@@ -59,9 +61,20 @@ export class RegisterPage implements OnInit {
       password: this.registerForm.value.password
     };
     this.regSer.signup(user).then(res => {
-      this.registerForm.reset();
-      this.toasterService.normalToast(`${res.user.email} is created successfully`, 'success');
-      this.router.navigate(['/login'])
+      var user1 = firebase.auth().currentUser;
+      user1.updateProfile({
+        displayName: this.registerForm.value.userName,
+        photoURL:''
+      }).then( () =>{
+        this.registerForm.reset();
+        this.toasterService.normalToast(`${res.user.email} is created successfully`, 'success');
+        this.router.navigate(['/login'])
+        this.regSer.storeUser(res.user.toJSON());
+      }).catch( (error)=> {
+        console.log(error)
+        // this.toasterService.normalToast(error.message, 'danger')
+      });
+
     })
       .catch(err => {
         this.toasterService.normalToast(err.message, 'danger')

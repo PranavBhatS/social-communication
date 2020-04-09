@@ -13,18 +13,25 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AuthGuard } from './auth.guard';
+import { AngularFirestoreModule } from '@angular/fire/firestore'; 
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,FooterComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      scrollPadding:false,
+      scrollAssist:false
+    }),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [
     StatusBar,

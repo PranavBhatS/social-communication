@@ -1,8 +1,47 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Inbox</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
+<ion-content #scrollElement>
+  <div class="message-wrap" *ngIf="messagesList">
+    <div *ngFor="let msg of messagesList" class="message" [class.left]="msg.userId != loggedInUser.uid"
+      [class.right]=" msg.userId === loggedInUser.uid ">
+      <img class="user-img" *ngIf="msg.photoURL" [src]="msg.photoURL" alt="" src="">
+      <img class="user-img" *ngIf="!msg.photoURL" src="assets/images/login-background.jpg">
+      <ion-spinner name="dots" *ngIf="msg.status === 'pending'"></ion-spinner>
+      <div class="msg-detail">
+        <div class="msg-info">
+          <p>
+            <ng-container *ngIf="msg.userId != loggedInUser.uid">
+              {{msg.name}}
+            </ng-container>
+            {{msg.time|relativeTime}}
+          </p>
+        </div>
+        <div class="msg-content" (tap)="delete(msg)" (dblclick)="delete(msg)">
+          <span class="triangle"></span>
+          <p class="line-breaker ">{{msg.message}}</p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+  </div>
+</ion-content>
+<ion-footer>
+  <div class="input-wrap">
+    <textarea #chat_input placeholder="Text Input" [(ngModel)]="newmessage" (keyup.enter)="send()">
+  </textarea>
+    <!-- <ion-button color="primary"  shape="round" (click)="send()"> -->
+    <button class="custom-button" (click)="send()">
+      <ion-icon name="send" color="primary"></ion-icon>
+    </button>
+    <!-- <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon> -->
+    <!-- </ion-button> -->
+  </div>
+</ion-footer>

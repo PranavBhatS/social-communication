@@ -9,11 +9,18 @@
       </ion-text>
       <form [formGroup]='registerForm'>
         <ion-item lines="full">
+          <ion-label position="floating">User Name</ion-label>
+          <ion-input type="text" formControlName='userName'></ion-input>
+        </ion-item>
+        <ion-text class="ion-text-right" color="danger" *ngIf="isSubmitted &&f.userName.errors &&f.userName.errors.required">
+          <div>User Name required.</div>
+        </ion-text>
+        <ion-item lines="full">
           <ion-label position="floating">Email</ion-label>
           <ion-input type="text" formControlName='email'></ion-input>
         </ion-item>
         <ion-text class="ion-text-right" color="danger" *ngIf="isSubmitted &&f.email.errors &&f.email.errors.required">
-          <div>Password required.</div>
+          <div>email required.</div>
         </ion-text>
         <ion-item lines="full">
           <ion-label position="floating">Password</ion-label>

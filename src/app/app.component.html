@@ -1,10 +1,10 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
+  <!-- <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay" *ngIf="isAutherized">
       <ion-content *ngIf="isAutherized">
         <ion-list id="inbox-list">
-          <ion-list-header>Profile</ion-list-header>
-          <ion-note>pranavsarang@gmail.com</ion-note>
+          <ion-list-header *ngIf="userInfo">{{userInfo.displayName}}</ion-list-header>
+          <ion-note *ngIf="userInfo">{{userInfo.email}}</ion-note>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i;changeRoute()" lines="none" detail="false" [class.selected]="selectedIndex == i">
@@ -13,17 +13,10 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
-        <!-- <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list> -->
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-  </ion-split-pane>
+   
+  </ion-split-pane> -->
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+  <app-footer *ngIf="isAutherized"></app-footer>
 </ion-app>

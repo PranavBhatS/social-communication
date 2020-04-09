@@ -3,8 +3,8 @@
     <ion-title>login</ion-title>
   </ion-toolbar>
 </ion-header> -->
-
-<ion-content class="hide-when-sm ">
+<!-- class="hide-when-sm  -->
+<ion-content>
   <!-- <h1>Login page</h1>
 <ion-button (click)="onClick()">Go to</ion-button>  -->
   <div class="login-content">
@@ -19,7 +19,6 @@
               <ion-text>
                 <h4 style="text-align: center;">Login to Social App</h4>
               </ion-text>
-              <div>
                 <ion-item>
                   <ion-input type="text" formControlName='email' clearInput placeholder='Email'></ion-input>
                 </ion-item>
@@ -33,7 +32,6 @@
                 <ion-text class="ion-text-right" color="danger" *ngIf="isFormSubmitted && f.password.errors">
                   <div>Password is required</div>
                 </ion-text>
-              </div>
               <br>
               <div>
                 <ion-button expand="block" (click)="onClick()" [disabled]='isSubmitClicked'>Sign In</ion-button>
