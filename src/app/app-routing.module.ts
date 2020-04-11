@@ -10,16 +10,16 @@ const routes: Routes = [
   },
   {
     path: 'folder',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule),
+    loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
   }
 ];
 
@@ -29,4 +29,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
