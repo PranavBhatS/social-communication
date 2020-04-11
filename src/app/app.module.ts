@@ -13,21 +13,30 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AngularFirestoreModule } from '@angular/fire/firestore'; 
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FooterComponent } from './footer/footer.component';
+import { IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera/ngx';
+import { Network } from '@ionic-native/network/ngx';
 @NgModule({
-  declarations: [AppComponent,FooterComponent],
+  declarations: [AppComponent, FooterComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot({
-      scrollPadding:false,
-      scrollAssist:false
+      scrollPadding: false,
+      scrollAssist: false
     }),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    IonicStorageModule.forRoot(
+      {
+        name: 'social_db',
+        driverOrder: ['indexeddb', 'sqlite', 'websql']
+      }
+    ),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -37,7 +46,8 @@ import { FooterComponent } from './footer/footer.component';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Camera,Network
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

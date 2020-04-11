@@ -70,3 +70,46 @@
 ion-content {
     top: 48px;
 }
+
+.action-sheet-title.sc-ion-action-sheet-md {
+    padding-left: unset;
+    padding-right: unset;
+    -webkit-padding-start: 16px;
+    padding-inline-start: 16px;
+    -webkit-padding-end: 16px;
+    padding-inline-end: 16px;
+    text-align: center;
+    color: #000;
+    font-weight: 500;
+}
+.action-sheet-button-inner.sc-ion-action-sheet-md {
+    -ms-flex-pack: start;
+    justify-content: center;
+}
+.action-sheet {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.galery {
+    color: var(--ion-color-primary)!important;
+    ion-icon {
+        color:var(--ion-color-primary)!important
+    }
+}
+
+.camera {
+    color: var(--ion-color-primary)!important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    ion-icon {
+        color:var(--ion-color-primary)!important
+    }
+}
+
+.cancel {
+    background:var(--ion-color-primary)!important;
+    text-align: center !important;
+    justify-content: center !important;
+    
+}

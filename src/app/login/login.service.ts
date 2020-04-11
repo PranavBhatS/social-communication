@@ -3,12 +3,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { ToasterService } from '../common/toaster.service';
 import { Subject } from 'rxjs';
+import { Storage } from '@ionic/storage';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   isAutherized = new Subject<boolean>()
-  constructor(private firebaseAuthentication: AngularFireAuth, private router: Router, private toasterService: ToasterService) { }
+  constructor(private firebaseAuthentication: AngularFireAuth,
+    private router: Router,private storage:Storage,
+    private toasterService: ToasterService) { }
   logout() {
     this.firebaseAuthentication.auth.signOut()
       .then(res => {
@@ -29,6 +32,7 @@ export class LoginService {
   }
   setUser(res) {
     localStorage.setItem("user", JSON.stringify(res.user))
+    this.storage.set("user",res.user);
     this.toasterService.normalToast("Your session login", 'success')
   }
 }
