@@ -16,30 +16,7 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   isAutherized = false;
   userInfo
-  public appPages = [
-    {
-      title: 'Profile',
-      url: '/folder/Profile',
-      icon: 'person'
-    },
-    {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'chatbubble'
-    },
-    // {
-    //   title: 'Invite',
-    //   url: 'folder/Invite',
-    //   icon: 'person-add'
-    // },
-    {
-      title: 'Logout',
-      url: 'folder/logout',
-      icon: 'log-in'
-    },
-
-  ];
-  // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  
 
   constructor(
     private platform: Platform,
@@ -47,8 +24,8 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private router: Router,
     private loginService: LoginService,
-    private network:Network,
-    private toaster:ToasterService
+    private network: Network,
+    private toaster: ToasterService
   ) {
     this.loginService.isAutherized.subscribe(res => this.isAutherized = res)
     this.initializeApp();
@@ -58,22 +35,25 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-        console.log('network was disconnected :-(');
-        this.toaster.normalToast('network was disconnected :-(','danger')
-      });
-      let connectSubscription = this.network.onConnect().subscribe(() => {
-        console.log('network connected!');
-        this.toaster.normalToast('network connected!','success')
-        // We just got a connection but we need to wait briefly
-         // before we determine the connection type. Might need to wait.
-        // prior to doing any api requests as well.
-        setTimeout(() => {
-          if (this.network.type === 'wifi') {
-            this.toaster.normalToast('we got a wifi connection, woohoo!','success')
-          }
-        }, 3000);
-      });
+      this.networkStatus();
+    });
+  }
+  networkStatus() {
+    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+      console.log('network was disconnected :-(');
+      this.toaster.normalToast('network was disconnected :-(', 'danger')
+    });
+    let connectSubscription = this.network.onConnect().subscribe(() => {
+      console.log('network connected!');
+      this.toaster.normalToast('network connected!', 'success')
+      // We just got a connection but we need to wait briefly
+      // before we determine the connection type. Might need to wait.
+      // prior to doing any api requests as well.
+      setTimeout(() => {
+        if (this.network.type === 'wifi') {
+          this.toaster.normalToast('we got a wifi connection, woohoo!', 'success')
+        }
+      }, 3000);
     });
   }
 
@@ -88,14 +68,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.loginService.logout()
   }
-  changeRoute() {
-    if (this.appPages[this.selectedIndex].title === 'Logout') {
-      this.logout()
-      this.selectedIndex = 0;
-    } else {
-      this.router.navigate([this.appPages[this.selectedIndex].url])
-    }
-  }
+  
 }
 
 
